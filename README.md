@@ -14,4 +14,4 @@
         - Any
         - 型名?とするとoptional<型名>のリスト
 
-- Dictionaryから次回学習# Swift
+- Dictionaryから次回学習
