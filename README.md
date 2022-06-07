@@ -58,10 +58,11 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
 - アップキャスト
     アップキャストとは階層関係にある具体的な型を上位の抽象的な型に変更することをいう。<br>
     キャストには「as」を使用する。
-    ```
-    swift:title
+    ```swift:title
     // 具体例
+
     var int: Int = 12   // 具体的なInt型
+
     var any: Any = int as Any   // 抽象的なAny型へとアップキャストしている
     ```
 - ダウンキャスト
@@ -71,11 +72,13 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
     Optional型か強制アンラップされた具体的な型となる。
     <br>
     強制アンラップされたとき 中身がnilだった場合はエラーとなり強制終了してしまう。
-    ```
-    swift:title
+    ```swift:title
     //具体例
+
     var any: Any = 12 //抽象的なAny型
+
     var optionalInt: Int? = any as? Int //具体的なOptional<Int>型へとダウンキャストしている。
+
     var int: Int = any as! Int //強制アンラップを行いInt型へとダウンキャストしている。
 
     any = nil
