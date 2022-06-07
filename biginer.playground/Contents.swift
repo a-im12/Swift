@@ -261,13 +261,50 @@
 //
 //var oo: String = op2 ?? " "
 //print(oo)
-var any: Any? = 12
-print(any)
+//var any: Any? = 12
+//print(any)
 
 
 // 具体例
 
-var int: Int = 12   // 具体的なInt型
-
-var any: Any = int as Any   // 抽象的なAny型へとアップキャストしている
+//var int: Int = 12   // 具体的なInt型
+//
+//var any: Any = int as Any   // 抽象的なAny型へとアップキャストしている
 //print(any + 1) // any型のため計算できない
+
+//var numbers: [Int] = [1, 2, 3, 4, 5, 6]
+//var str: Array<String> = ["a", "b", "c", "d"]
+//print(numbers)
+//print(str[2])
+
+//var numbers: Array<Int?> = [1, 2, 3, 4, 5, 6]
+//print(numbers)
+//
+//if var notOptionalNumber = numbers[1]{
+//    print(notOptionalNumber)
+//}
+
+//var int: Int? = 12
+//print(type(of: int))
+//
+//if let num = int{
+//    print(type(of: num))
+//}
+
+var numbers1 = [1, 2, 3]
+var numbers2 = [4, 5, 6]
+print(numbers1)
+
+//numbers1.append(4)
+//numbers1.insert(4, at: 1)
+//var numbers3 = numbers1 + numbers2
+
+
+numbers1 = numbers1 + numbers2
+print(numbers1)
+//numbers3.remove(at: 2)
+//numbers3.removeAll()
+//print(numbers3)
+//print(type(of: numbers3))
+
+

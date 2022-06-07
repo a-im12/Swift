@@ -21,11 +21,43 @@ Optional型のままでは値同士の演算ができないから
     - if let 定数名 = Optional型
     もしOptional型の中身がnilだった場合ifの中は実行されない<br>
     オプショナルバインディングという
-    <br>
+    ```swift:title
+    // 具体例
+
+    var optinalInt: Int? = 12   // Optional<Int>型
+
+    if let int = optionalInt{
+        //optionalIntの中には具体的な値が入っているので実行される
+
+        print(type(of:int)) // Int型
+
+    }
+
+    optionalInt = nil
+    // if let じゃなく if var でもアンラップ可能
+
+    if var num = optionalInt{
+        //optionalIntの中にはnilが入っているので実行されない
+        print(type(of:num))
+    }
+
+    ```
     - var 変数名 = Optional型!
     強制アンラップといい中身がnilだった場合エラーとなりプログラムが終了する
+    ```swift:title
+    //具体例
+
+    var int: Int? = 12  //Optional<Int>型
+
+    var notOptionalInt: Int = int!
+    print(type(of:notOptionalInt))  //Int型
+
+    int = nil
+
+    notOptionalInt = int!   //intの中はnilなのでエラーが発生する
+    ```
     <br>
-    var 変数名 = Optional型 ?? 具体的な値
+    - var 変数名 = Optional型 ?? 具体的な値
     ??演算子といい中身がnilの場合は??の後ろの値を<br>
     nilじゃ無い場合はOptional型の値を返す。<br>
 
@@ -86,13 +118,105 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
     ```
 
 ### 配列Arrayまで学習
-- var 変数名: Array[任意の型名] = [値, 値, 値...]
-- 任意の型名;
-    - Sting, ?
-    - Int, ?
-    - Float, ?
-    - Double, ?
-    - Any
-    - 型名?とするとoptional<型名>のリスト
+- 定義方法<br>
+    var 変数名: Array<任意の型名> = [値, 値, 値...]<br>
+    または<br>
+    var 変数名: [任意の型名] = [値, 値, 値...]
+    - 任意の型名;
+        - Sting, ?
+        - Int, ?
+        - Float, ?
+        - Double, ?
+        - Any
+        - 型名?とするとoptional<型名>のリスト
+
+    ```swift:title
+    //具体例
+
+    var numbers: Array<Int> = [1, 2, 4, 5, 6, 7]
+    print(numbers)  //[1, 2, 4, 5, 6, 7]
+
+    var str: [String] = ["a", "b", "c", "d"]
+    print(str[2])   //c
+
+    var optionalNumbers: Array<Int?> = [1, 2, 3, 4, 5, 6]
+    print(optionalNumbers)  //[Optional(1), Optional(2), Optional(3), Optional(4), Optional(5), Optional(6)]
+
+    // アンラップは1要素ずつ行う
+
+    if var notOptinalNumber = optionalNumbers[2]{
+        print(notOptionalNumber)    // 3
+
+    }
+
+    ```
+- 配列への要素の追加
+    要素の追加には.appendを使用する(pythonと同じ動き)
+    <br>
+    配列.append(値)
+    ```swift:title
+    // 具体例
+
+    var numbers: Array<Int> = [1, 2, 3]
+    print(numbers)  // [1, 2, 3]
+
+    numbers.append(4)
+    print(numbers)  // [1, 2, 3, 4]
+    ```
+
+- 配列への要素の挿入
+    要素の挿入には.insertを使用する
+    <br>
+    配列.insert(挿入する値, at:挿入したい添字)
+    ```swift:title
+    //具体例
+
+    var numbers: [Int] = [1, 2, 3, 5]
+    print(numbers)  // [1, 2, 3, 5]
+
+    numbers.insert(4, at:3)
+    print(numbers)  // [1, 2, 3, 4, 5]
+    ```
+
+- 配列同士の結合
+    配列の結合には「+」を使用する
+    <br>
+    配列1 + 配列2
+    ```swift:title
+    // 具体例
+
+    var numbers1: Array<Int> = [1, 2, 3]
+    var numbers2: [Int] = [4, 5, 6]
+
+    var number3 = number1 + number2
+    print(number3)  // [1, 2, 3, 4, 5, 6]
+
+    number1 = number1 + nunmber2
+    print(number1)  // [1, 2, 3, 4, 5, 6]
+
+    ```
+
+- 要素の削除
+    配列の要素を削除するには.remove(at: _)を使用する<br>
+    また、配列のすべての要素を削除したい場合は.removeAll()を使用する
+    <br>
+    配列.remove(at: 消したい値の添字)<br>
+    配列.removeAll()
+    ```swift:title
+    //具体例
+
+    var numbers1: Array<Int> = [1, 2, 3]
+    var numbers2: [Int] = [4, 5, 6]
+
+    print(numbers1)  // [1, 2, 3]
+
+    numbers1.remove(at: 1)
+    print(numbers1) // [1, 3]
+
+    print(numbers2) // [4, 5, 6]
+
+    numbers2.removeAll()
+    print(numbers2) //[]
+    ```
 
 ### Dictionaryから次回学習
