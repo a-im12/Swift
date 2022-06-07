@@ -28,6 +28,7 @@ Optional型のままでは値同士の演算ができないから
     var 変数名 = Optional型 ?? 具体的な値
     ??演算子といい中身がnilの場合は??の後ろの値を<br>
     nilじゃ無い場合はOptional型の値を返す。<br>
+
     ```swift:title  
     var option: Int? = 12   //Optional<12>
 
