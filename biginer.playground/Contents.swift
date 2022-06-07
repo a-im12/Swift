@@ -233,3 +233,35 @@
 //numbers.removeAll()
 //print(numbers)
 
+
+//var int:Int = 12
+//var any:Any = int as Any
+//print(any)
+//print(type(of: any))
+//
+//var optional = any as? Int
+//print(optional)
+//int = optional ?? 1
+//print(int)
+
+//var optional: Int? = 12
+//print(optional)
+
+//optional = optional.flatMap({value in value * 4})
+//print(optional)
+//print(type(of: optional))
+
+//optional = optional.map({value in value / 4})
+//print(optional)
+//print(type(of: optional))
+//
+//var op2 = optional.map({value in String(value)})
+//print(op2)
+//print(type(of: op2))
+//
+//var oo: String = op2 ?? " "
+//print(oo)
+var any: Any? = 12
+print(any)
+
+
