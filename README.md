@@ -28,9 +28,9 @@ Optional型のままでは値同士の演算ができないから
     var 変数名 = Optional型 ?? 具体的な値
     ??演算子といい中身がnilの場合は??の後ろの値を<br>
     nilじゃ無い場合はOptional型の値を返す。<br>
-    ```
-    swift:title  
+    ```swift:title  
     var option: Int? = 12   //Optional<12>
+
     var num = option ?? 1   //12
 
     option = nil
@@ -41,8 +41,7 @@ Optional型のままでは値同士の演算ができないから
 オプショナルチェインとは、アンラップを行わずにOptional型の値を操作すること<br>
 主にmapメソッド、flatMapメソッドによって実現する。<br>
 
-```
-swift:title
+```swift:title
 var optional: Int? = 12 //Optional<12>
 optional = optional.map({value in value * 2}) //Optional<24>
 

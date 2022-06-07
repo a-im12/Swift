@@ -265,3 +265,9 @@ var any: Any? = 12
 print(any)
 
 
+// 具体例
+
+var int: Int = 12   // 具体的なInt型
+
+var any: Any = int as Any   // 抽象的なAny型へとアップキャストしている
+//print(any + 1) // any型のため計算できない
