@@ -332,8 +332,8 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
         宣言方法→開始する任意の数値..<終了する任意の数値<br>
         開始する任意の数値と、終了する任意の数値未満の値を境界とする範囲を生成する<br>
         カウント可能<br>
-
         <br>
+
         ```swift:title
         //具体例
 
