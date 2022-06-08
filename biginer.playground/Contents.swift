@@ -308,8 +308,51 @@
 //print(type(of: numbers3))
 
 //var dictionary: Dictionary<String, Int> = ["ayumu" : 20, "sayaka" : 19, "yuusei" : 18, "issin" : 16]
-var dictionary: [String : Int] = ["ayumu" : 20, "sayaka" : 19, "yuusei" : 18, "issin" : 16]
+//var dictionary: [String : Int] = ["ayumu" : 20, "sayaka" : 19, "yuusei" : 18, "issin" : 16]
 //dictionary["ayumu"] = 222
 //dictionary["reia"] = 3
-dictionary["ayumu"] = nil
-print(dictionary)
+//dictionary["ayumu"] = nil
+//print(dictionary)
+
+//var dictionary: [String:Int] = ["key":1]
+//print(dictionary)
+//
+//dictionary["key"] = nil
+//print(dictionary)
+
+//let range = 3.0...
+//print(type(of: range))
+//
+//print(range.contains(3.001))
+
+//let range: Range<Int> = 2..<6
+//let range: CountableRange<Int> = 2..<7
+//let range: PartialRangeUpTo<Int> = ..<6
+//let range: ClosedRange<Int> = 2...9
+//let range: CountableClosedRange<Int> = 2...9
+//let range: PartialRangeThrough<Int> = ...2
+//let range: PartialRangeFrom<Int> = 2...
+//let range: CountablePartialRangeFrom<Int> = 2...
+
+//print(type(of: range))
+//for i in range{
+//    print(i)
+//}
+//print(range.contains(5))
+
+//let range: CountableRange<Int> = 1..<5
+//let range = ..<5
+//let range: Range<Double> = 1.0..<4.1
+//let countableRange: CountableRange<Int> = 1..<5
+//
+//print(type(of: range))
+//print(type(of: countableRange))
+//
+//for i in countableRange{
+//    print(i)
+//    print(countableRange.upperBound)
+//}
+
+let range: CountableRange<Double> = 1.0..<3.0
+
+print(range)

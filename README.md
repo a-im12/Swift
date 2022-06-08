@@ -268,7 +268,7 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
     辞書[変更したい値のkey] = 変更したい値<br>
     で行う
     ```swift:title
-    var dictionary: Dictionary<String, Int> = ["key1":1]
+    var dictionary: Dictionary[String:Int] = ["key1":1]
 
     // key1の値を10に変更する
 
@@ -278,6 +278,96 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
 
 - 辞書の削除
     辞書の値を削除したいときは<br>
-    辞書[削除したい値のkey]
+    辞書[削除したい値のkey] = nil
 
+    ```swift:title
+    //具体例
+
+    var dictionary = ["key1":1]
+
+    dictionary["key1"] = nil
+    print(dictionary)   // [:]
+    ```
+
+### 範囲型
+範囲型とは指定した値の範囲を生成するもので、カウント可能なものと不可能なものの2種類に分けることができる。<br>
+
+- 具体的な型の種類
+    - Range<Bound>
+    - CountableRange<Bound>
+    - PartialRangeUpTo<bound>
+    - ClosedRange<Bound>
+    - ClosedCauntableRange<Bound>
+    - PartialRangeThrough<Bound>
+    - PartialRangeFrom<Bound>
+    - CountablePartialRangeFrom<Bound>
+以上の8種が範囲型の型の種類である。<Bound>の中には具体的な型の名前(IntやDoubleなど)が入る<br>
+<br>
+
+- 型の解説
+    - Range<Bound><br>
+        宣言方法→開始する任意の数値..<終了する任意の数値<br>
+        開始する任意の数値と、終了する任意の数値未満の値を境界とする範囲を生成<br>
+        カウントはできない<br>
+
+        <br>
+        ```swift:title
+        //具体例
+
+        let range: Range<Int> = 1..<5   // 1~4までの範囲を生成
+
+        let doubleRange: Range<Double> = 1.0..<5.0  // 1.0~4.9999999...を生成
+
+        print(type(of:range))   // Range<Int>
+
+        print(type(of:doubleRange)) // Range<Dounble>
+
+        for i in range{
+
+            print(i)    // カウント不可なので実行できない
+
+        }
+        ```
+    - CountableRange<Bound><br>
+        宣言方法→開始する任意の数値..<終了する任意の数値<br>
+        開始する任意の数値と、終了する任意の数値未満の値を境界とする範囲を生成する<br>
+        カウント可能<br>
+
+        <br>
+        ```swift:title
+        //具体例
+
+        let range: CountableRange<Int> = 1..<5  // 1~4までの範囲を生成
+
+        let countableRange = 1..<5
+
+        let doubleRange: CountableRange<Double> = 1.0..<6.0 // Double型はカウント不可能なのでエラーとなる。
+
+        print(type(of:range))   // CountableRange<Int>
+
+        print(type(of: countalbleRange))    // Int型の範囲を宣言した場合、型推論によりCountableRange<Int>となる
+
+        for i in range{
+
+            print(i)        // 1, 2, 3, 4
+
+        }
+        ```
+
+    - PartialRangeUpTo<br>
+        宣言方法→..<終了する任意の数値<br>
+        終了する任意の数値未満の値までの範囲を生成する。境界は終了する任意の数値未満の値のみとなる。<br>
+        カウント不可<br>
+        <br>
+        ```swift:title
+        //具体例
+
+        let range: PartialRangeUpTo<Int> = ..<5 // 5未満の数値の範囲を生成
+
+        print(type(of: range))  //PartialrangeUpTo<Int>
+
+        for i in range{
+            print(i)        //カウント不可のため実行エラーとなる
+        }
+        ```
 
