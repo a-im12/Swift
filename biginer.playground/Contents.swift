@@ -291,20 +291,25 @@
 //    print(type(of: num))
 //}
 
-var numbers1 = [1, 2, 3]
-var numbers2 = [4, 5, 6]
-print(numbers1)
+//var numbers1 = [1, 2, 3]
+//var numbers2 = [4, 5, 6]
+//print(numbers1)
 
 //numbers1.append(4)
 //numbers1.insert(4, at: 1)
 //var numbers3 = numbers1 + numbers2
 
 
-numbers1 = numbers1 + numbers2
-print(numbers1)
+//numbers1 = numbers1 + numbers2
+//print(numbers1)
 //numbers3.remove(at: 2)
 //numbers3.removeAll()
 //print(numbers3)
 //print(type(of: numbers3))
 
-
+//var dictionary: Dictionary<String, Int> = ["ayumu" : 20, "sayaka" : 19, "yuusei" : 18, "issin" : 16]
+var dictionary: [String : Int] = ["ayumu" : 20, "sayaka" : 19, "yuusei" : 18, "issin" : 16]
+//dictionary["ayumu"] = 222
+//dictionary["reia"] = 3
+dictionary["ayumu"] = nil
+print(dictionary)

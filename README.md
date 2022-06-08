@@ -15,7 +15,7 @@
 Optional型とは、値が何も入っていない(nil)状態にできる
 ### Optional型のアンラップ
 アンラップとはOptinal型をそれぞれの方に変換すること
-- なぜアンラップが必要なのか
+- なぜアンラップが必要なのか<br>
 Optional型のままでは値同士の演算ができないから
 - アンラップの方法
     - if let 定数名 = Optional型
@@ -117,7 +117,7 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
     int = any as! Int // anyの中がnilのためエラーとなる。
     ```
 
-### 配列Arrayまで学習
+### 配列
 - 定義方法<br>
     var 変数名: Array<任意の型名> = [値, 値, 値...]<br>
     または<br>
@@ -219,4 +219,65 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
     print(numbers2) //[]
     ```
 
-### Dictionaryから次回学習
+### 辞書
+- 定義方法
+    変数名: Dictionary<任意の型名, 任意の型名> = [key : value, key : value, ....]<br>
+    または<br>
+    変数名: [任意の型名 : 任意の型名] = [key : value, key : value, ....]<br>
+    または<br>
+    変数名 = [key : value, key : value, ....]<br>
+    <br>
+    存在しないkeyにアクセスするとエラーではなくnilが帰ってくる。<br>
+    このことから、取得した際に返ってくる値の型はOptional型となる<br>
+    ```swift:title
+    //　具体例
+    //定義
+
+    var dictionary1: Dictionary<String, Int> = ["name1":20, "name2":19, "name3":18]
+    print(dictionary1)   // ["name1":20, "name2":19, "name3":18]
+
+    var dictionary2: [String : Int] = ["name1":20, "name2":19, "name3":18]
+    print(dictionary2)  // ["name1":20, "name2":19, "name3":18]
+
+    var dictionary3 = ["name1":20, "name2":19, "name3":18]
+    print(dictionary3)  // ["name1":20, "name2":19, "name3":18]
+
+    var dictionary4: [String:Int] = [1:2, 2:3]  // 定義しているのは[String : Int]型だが、代入しているのは[Int : Int]型なのでエラーが発生する
+
+    // 値の取得
+
+    print(dictionary1["name1"]) // Optional(20)
+
+    print(dictionary1["name4"]) // nil      name4というkeyは存在しないため
+    ```
+
+- 辞書への追加
+    辞書への追加は<br>
+    辞書[存在しないkey] = 追加する値<br>
+    で行う。
+    ```swift:title
+    //具体例
+
+    var dictionary: Dictionary<String, Int> = ["key1":1]
+    dictionary["key2"] = 2
+
+    print(dictionary)   // ["key1":1, "key2":2]
+    ```
+- 辞書の更新
+    辞書の値の更新は<br>
+    辞書[変更したい値のkey] = 変更したい値<br>
+    で行う
+    ```swift:title
+    var dictionary: Dictionary<String, Int> = ["key1":1]
+
+    // key1の値を10に変更する
+
+    dictionary["key1"] = 10
+    print(dictionary)   // ["key":10]
+    ```
+
+- 辞書の削除
+    辞書の値を削除したいときは<br>
+    辞書[削除したい値のkey]
+
+
