@@ -297,7 +297,7 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
     - CountableRange<Bound>
     - PartialRangeUpTo<bound>
     - ClosedRange<Bound>
-    - ClosedCauntableRange<Bound>
+    - CountableClosedRange<Bound>
     - PartialRangeThrough<Bound>
     - PartialRangeFrom<Bound>
     - CountablePartialRangeFrom<Bound>
@@ -354,7 +354,7 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
         }
         ```
 
-    - PartialRangeUpTo<br>
+    - PartialRangeUpTo<Bound><br>
         宣言方法→..<終了する任意の数値<br>
         終了する任意の数値未満の値までの範囲を生成する。境界は終了する任意の数値未満の値のみとなる。<br>
         カウント不可<br>
@@ -368,6 +368,50 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
 
         for i in range{
             print(i)        //カウント不可のため実行エラーとなる
+
         }
         ```
+    
+    - ClosedRange<Bound><br>
+        宣言方法→開始する任意の数値...終了する任意の数値<br>
+        開始する任意の数値から終了する任意の数値を含む範囲を生成する<br>
+        カウント不可<br>
 
+        ```swift:title
+        // 具体例
+
+        let range: ClosedRange<Int> = 1...4 // 1~4までの範囲を生成
+
+        for i in range{
+
+            print(i)    // カウント不可のためエラーとなる
+
+        }
+
+        ```
+    
+    - CountableClosedRange<Bound><br>
+        宣言方法→開始する任意の数値...終了する任意の数値<br>
+        開始する任意の数値から終了する任意の数値を含む範囲を生成する<br>
+        カウント可<br>
+
+        ```swift:title
+        // 具体例
+
+        let range: CountableClosedRange<Int> = 1...6   //1~6までの範囲を生成
+
+        for i in range{
+
+            print(i)    // カウント可なので1~6の整数が順番に表示される
+
+        }
+
+        let doubleRange:  CountableClosedRange<Double> = 1.0...6.0
+
+        for i in doubleRange{
+
+            print(i)    // Double型, Float型はカウント不可
+
+        }
+        ```
+    - 
