@@ -410,7 +410,7 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
 
         for i in doubleRange{
 
-            print(i)    // Double型, Float型はカウント不可
+            print(i)    // Double型, Float型はカウント不可のためエラーとなる
 
         }
         ```
