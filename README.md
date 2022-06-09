@@ -302,11 +302,12 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
     - PartialRangeFrom<Bound>
     - CountablePartialRangeFrom<Bound>
 以上の8種が範囲型の型の種類である。<Bound>の中には具体的な型の名前(IntやDoubleなど)が入る<br>
+__Countable__　がつく型はInt型のみ生成可能
 <br>
 
 - 型の解説
     - Range<Bound><br>
-        宣言方法→開始する任意の数値..<終了する任意の数値<br>
+        宣言方法 → 開始する任意の数値..<終了する任意の数値<br>
         開始する任意の数値と、終了する任意の数値未満の値を境界とする範囲を生成<br>
         カウントはできない<br>
         <br>
@@ -329,7 +330,7 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
         }
         ```
     - CountableRange<Bound><br>
-        宣言方法→開始する任意の数値..<終了する任意の数値<br>
+        宣言方法 → 開始する任意の数値..<終了する任意の数値<br>
         開始する任意の数値と、終了する任意の数値未満の値を境界とする範囲を生成する<br>
         カウント可能<br>
         <br>
@@ -355,8 +356,8 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
         ```
 
     - PartialRangeUpTo<Bound><br>
-        宣言方法→..<終了する任意の数値<br>
-        終了する任意の数値未満の値までの範囲を生成する。境界は終了する任意の数値未満の値のみとなる。<br>
+        宣言方法 → ..<終了する任意の数値<br>
+        終了する任意の数値未満の値までを境界とする範囲を生成する。境界は終了する任意の数値未満の値のみとなる。<br>
         カウント不可<br>
         <br>
         ```swift:title
@@ -373,8 +374,9 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
         ```
     
     - ClosedRange<Bound><br>
-        宣言方法→開始する任意の数値...終了する任意の数値<br>
-        開始する任意の数値から終了する任意の数値を含む範囲を生成する<br>
+        宣言方法 → 開始する任意の数値...終了する任意の数値<br>
+        開始する任意の数値と終了する任意の数値を境界とする範囲を生成する<br>
+        境界値は、開始する任意の値と終了する任意の値の2つとなる。<br>
         カウント不可<br>
 
         ```swift:title
@@ -391,8 +393,9 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
         ```
     
     - CountableClosedRange<Bound><br>
-        宣言方法→開始する任意の数値...終了する任意の数値<br>
-        開始する任意の数値から終了する任意の数値を含む範囲を生成する<br>
+        宣言方法 → 開始する任意の数値...終了する任意の数値<br>
+        開始する任意の数値と終了する任意の数値を境界とする範囲を生成する<br>
+        境界値は、開始する任意の値と終了する任意の値の2つとなる。<br>
         カウント可<br>
 
         ```swift:title
@@ -406,12 +409,133 @@ var strOptional = optional.flatMap({value in String(value)}) // Optional<"24">
 
         }
 
-        let doubleRange:  CountableClosedRange<Double> = 1.0...6.0
+        let doubleRange:  CountableClosedRange<Double> = 1.0...6.0  // Double型, Float型はCountableでは使用できないので、エラーとなる。
 
-        for i in doubleRange{
+        ```
+    - PartialRangeThrough<Boun><br>
+        宣言 → ...終了する任意の数値<br>
+        終了する任意の数値を境界とする範囲を生成する。<br>
+        境界値は、終了する任意の数値の1つだけとなる<br>
+        カウント不可<br>
 
-            print(i)    // Double型, Float型はカウント不可のためエラーとなる
+        ```swift:title
+        //具体例
+
+        let range: PartialRangeThrough<Int> = ...4  // ~4までの範囲を生成
+
+        for i in range{
+
+            print(i)    // カウント不可のためエラーとなる。
 
         }
         ```
-    - 
+    - PartialRangeFrom<Bound><br>
+        宣言 → 開始する任意の数値...<br>
+        開始する任意の数値を境界とする範囲を生成する。<br>
+        境界値は、開始する任意の数値の1つだけとなる。<br>
+        カウント不可<br>
+
+        ```swift:title
+        // 具体例
+
+        let range: PartialRangeFrom<Int> = 5... // 5~の範囲を生成する。
+
+        for i in range{
+
+            print(i)    // カウント不可のためエラーとなる
+
+        }
+        ```
+    - CountablePartialRangeFrom<Bound><br>
+        宣言 → 開始する任意の数値...<br>
+        開始する任意の数値を境界としたそれ以上の範囲を生成する<br>
+        境界値は、開始する任意の数値の1つだけとなる。<br>
+        カウント可<br>
+
+        ```swift:title
+        // 具体例
+
+        let range: CountablePartialRangeFrom<Int> = 4...    // 4~の範囲を生成する
+
+        for i in range{
+            print(i)    // カウント可なので、実行できるが、以上なので無限ループとなる。
+
+        }
+
+        let doubleRange: CountablePartialRange<Double> = 1.4... // Double型, Float型はCountableでは使用できない。
+        ```
+- 範囲型の型推論
+    範囲型でも他の型と同じように型推論を使用できる。<br>
+    型推論は両辺の型から推測される。<br>
+    ```swift:title
+    //具体例
+
+    // Int..<Intの場合
+
+    let intRange = 1..<4
+    print(type(of: intRange))  //CountableRange<Int>
+
+    // Double..<Doubleの場合
+
+    let doubleRange = 1.3..<5.3
+    print(type(of: doubleRange))    //Range<Double>
+
+    // Int..<Doubleの場合
+
+    let range = 1..<7.4
+    print(type(of: range))  // Range<Double>
+    ```
+
+    また、型アノテーションを使用した場合には、型アノテーションが優先される。
+    ```swift:title
+    // 具体例
+
+    let range: Range<Double> = 1..<6
+    print(type(of: range))  // Range<Double>
+    ```
+- 範囲型の操作
+    - 境界値へのアクセス
+        .upperBound, .lowerBoundを用いることで境界値へのアクセスを行うことができる。<br>
+        境界値とは、範囲型を宣言する時に指定した数値のことである。<br>
+        また、PartialRangeがつくものは開始の数値または終了の数値のどちらかしか取得できない。<br>
+
+        ```swift:title
+        //具体例
+
+        let intRange: Range<Int> = 1..<4
+        
+        print(intRange.upperBound)  // 4
+
+        print(intRange.lowerBound)  // 1
+
+        let coubleRange: Range<Double> = 1.3..<6.7
+
+        print(doubleRange.upperBound)   // 6.7
+
+        print(doubleRange.lowerBound)   // 1.3
+
+        let intPartialRange: PartialRangeUpTo<Int> = ..<6
+
+        print(intPartialRange.upperBound)   // 6
+
+        print(intPartialRange.lowerBound)   // 存在しないため、エラーとなる。
+
+        let doublePartialRange: PartialRangeFrom<Double> = 1.2...
+
+        print(doublePartialRange.upperBound)    // 存在しないため、エラーとなる
+
+        print(doublePartialRange.lowerBound)    // 1.2
+        ```
+    - 含まれているかの判定
+        .contains()を用いることで、ある値がその範囲に含まれているかを判定できる。<br>
+        含まれる場合は __true__ を、含まれない場合は __false__ を返す。<br>
+        ```swift:title
+        // 具体例
+
+        let range: Range<Int> = 1..<8
+        print(range.contains(2))    // true
+
+        print(range.contains(11))   // false
+        ```
+
+### コレクションとしてのString型

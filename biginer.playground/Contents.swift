@@ -353,6 +353,23 @@
 //    print(countableRange.upperBound)
 //}
 
-let range: CountableRange<Double> = 1.0..<3.0
+//let range: CountableRange<Double> = 1.0..<3.0
+//
+//print(range)
 
-print(range)
+//let range: PartialRangeThrough<Int> = ...4
+//let range: CountableClosedRange<Double> = 1.0...2.4
+
+//print(range.contains(0.1))
+//let range = 1..<5.3
+
+//print(type(of: range))
+
+//let range: Range<Double> = 1..<5
+
+//let range: Range<Int> = 1..<4
+//print(type(of: range))
+//print(range.upperBound)
+
+let range: Range<Int> = 1..<6
+print(range.contains(3))
