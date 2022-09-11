@@ -3,7 +3,10 @@
 ## biginerファイル
 - swiftの動きを勉強するためのファイル
 
-## biginerログ
+~~## biginerログ~~
+学習内容は以下のポートフォリオサイトにまとめました。<br>
+[](https://a-im12.github.io/work-history/swift.html)
+
 ### 変数
 - Int
 - String
