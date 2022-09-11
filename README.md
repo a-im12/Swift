@@ -14,6 +14,7 @@
 - Double
 - Float
 - Any
+
 それぞれの型の後ろに「?」を付けるとOptional型となる<br>
 Optional型とは、値が何も入っていない(nil)状態にできる
 ### Optional型のアンラップ
