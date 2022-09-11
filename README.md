@@ -539,3 +539,218 @@ __Countable__　がつく型はInt型のみ生成可能
         ```
 
 ### コレクションとしてのString型
+String型は1文字の集合と考えるとコレクションと捉えることができる。<br>
+
+- Character型
+    1文字を扱う型をCharacter型といい、1文字しか扱うことができない。<br>
+    文字を扱う変数の場合、デフォルとはString型であるため、Character型を扱い時は<br>
+    型アノテーションを使用しなければならない。<br>
+    ```swift:title
+    // 具体例
+
+    var s = "a"
+    print(type(of: s))  // 型推測により、String型となる
+
+    var char: Character = "a"
+    print(type(of: s))  // 型アノテーションによりCharacter型となる。
+    ```
+
+- String.Index型
+    String.Indexとは、String型のそれぞれの文字の位置を表す型のこと<br>
+    String.Indexを添字として指定することで、対応する文字を取得することができる<br>
+    .endIndexは一番最後の場所を返すのではなく、その次の値を返してしまうので<br>
+    その値を使って文字を指定しようとすると、文字は存在しないので<br>
+    エラーとなってしまう。(Range型に似ている 1..<4 4は含まない的な)
+    ```swift:title
+    //具体例
+
+    var s = "abcd"
+    var startIndex: String.Index = s.startIndex
+    var endIndex = s.endIndex
+
+    print(s[startIndex])    // a
+
+    print(s[endIndex])  // エラー
+    ```
+- offsetBy
+    上で説明したendIndexを文字列の一番最後に対応させたいときや<br>
+    参照位置をずらしたい時に使用する。<br>
+
+    使用するときは
+    .index(元になるインデックス, offsetBy: ずらしたい数)
+
+    ```swift:title
+    // 具体例
+
+    var s = "abcd"
+    var lastIndex = s.index(s.endIndex, offsetBy: -1)
+
+    print(s[lastIndex])     // d
+    ```
+- for in を用いた文字の取り出し
+    String型はfor in を用いることで、一文字ずつ取り出すことができる。<br>
+    取り出した文字はCharacter型となる。<br>
+
+    ```swift:title
+    // 具体例
+
+    var s = "abcd"
+
+    for i in s{
+        print(i)    // a, b, c, dと順番に表示される
+
+        print(type(of: i))  // Character
+
+    }
+    ```
+### if文
+- 基本文法
+    javaとPythonの中間みたいな書き方
+    ```swift:title
+
+    if 条件式{
+
+        //条件式がTrueの時に実行したい処理
+
+    }
+    ```
+
+- else文
+    ```swift:title
+    if 条件式{
+
+        //条件式がTrueの時に実行したい処理
+
+    }else{
+
+        //条件式がFalseの時に実行したい処理
+
+    }
+    ```
+
+- else if文
+    pythonの影響で「elif」と書きそう...
+
+    ```swift:title
+    if 条件式1{
+
+        //条件式1がTrueの時に実行したい処理
+
+    }else if 条件式2{
+
+        //条件式1がFalseだが条件式2がTrueの時に実行したい処理
+
+    }else{
+        
+        //どちらの条件にも当てはまらない時に実行したい処理
+
+    }
+    ```
+
+- Optional型とif文
+    if var 変数名 = Optional型<br>
+    または<br>
+    if let 定数名 = Optional型<br>
+    を用いることでoptional型のアンラップができる。<br>
+    また、複数同時にアンラップも可能
+
+    ```swift:title
+    // 基本的なアンラップ
+
+    let optionalA: Optional<Int> = 12  // Optional<12>
+
+    if let intA = optionalA{
+
+        print(intA)        // 12
+
+    }else{
+
+        // もし中身がnilだった場合ここが実行される。
+
+    }
+    ```
+    ```swift:title
+    // 複数同時にアンラップ
+
+    var optionalA: Optional<Int> = 1
+    var optionalB: Int? = 12
+
+    if var intA = optionalA, var intB = optionalB{
+
+        print(intA, intB)   // 1 12
+
+    }else{
+
+        // 一つでもnilがあった場合はここが実行される
+
+    }
+    ```
+
+    if-let または if-var でアンラップした値は{}の中がスコープとなる<br>
+    {}外で使用するとスコープ外となりコンパイルエラーとなる
+
+    ```swift:title
+    var a: Int? = 12
+
+    if var b = a{
+
+        print(b)    //スコープ内のため使用可能
+
+    }
+
+    print(b)    // スコープ外のためコンパイルエラー
+
+    ```
+- guard文
+    前提条件をつけられる<br>
+    guard文に記述した条件が不成立の時に{}の中を実行する。<br>
+    {}の中ではguard文が記述されているスコープの外に退出する処理がなくてはならない。<br>
+
+    ```swift:title
+    
+    func some(){
+        var a = 12
+
+        guard a < 10 else{
+
+            print("a < 10はfalseなのでここが実行される")
+            return      // スコープ外に退出する処理
+
+        }
+
+        print("guard文が実行されたので、ここは無視される")
+    }
+
+    var b = 13
+    let range = 1..<7
+    for i in range{
+        guard b > 10{
+
+            print("b > 10はtrueなのでここは実行されない")
+            break   //スコープ外に退出する処理
+
+        }
+        print("guard文が実行されなかったので、ここが実行される")
+    }
+    ```
+    guard-let文<br>
+    if-letと同じくアンラップを行うことができる。<br>
+    大きな違いはguard-let文のスコープ外でもここで生成した値は使用できると言う点である。
+    ```swift:title
+    func add(_ a:Int?)->Int?{
+        guard let intA = a else{
+            print("nil値が設定されています。")
+            return nil
+        }
+
+        return a + 10
+    }
+
+    // var b: Int? = 3
+
+    var b: Int? = nil
+    var c = add(b)
+    print(c)
+    ```
+    上のプログラムの場合bにはnilが入っているため、guard文が実行される<br>
+    一方bに3が入っている場合はアンラップに成功し、10足されたものが返される
